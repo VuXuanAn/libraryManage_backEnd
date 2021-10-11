@@ -11,6 +11,8 @@ const nxbRoutes = require("./routes/nxb")
 const adminRoutes = require("./routes/admin/auth")
 const initDataRoutes = require("./routes/admin/initData")
 const bookRoutes = require("./routes/book")
+const ticketBorrowedRoutes = require("./routes/ticketBorrows")
+const categoryRoutes = require("./routes/category")
 env.config();
 // mongodb+srv://Vuxuanan:<password>@cluster0.jjn8u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 mongoose
@@ -36,7 +38,8 @@ app.use("/api", nxbRoutes);
 app.use("/api", adminRoutes);
 app.use("/api", initDataRoutes);
 app.use("/api", bookRoutes)
-
+app.use("/api", ticketBorrowedRoutes)
+app.use("/api", categoryRoutes)
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
 });
