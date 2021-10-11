@@ -27,8 +27,9 @@ exports.addNewBook = (req, res) => {
 
 exports.getAllBook = async (req, res) => {
     const book = await Book.find({})
-        .select("_id name price nxb stock  borrowed descreption pictureBook  category ")
-        .populate({ path: "nxb", select: "name" }, { path: 'category', select: "name" }).exec();;
+        .select("_id name price nxb stock  borrowed descreption pictureBook")
+        .populate({ path: "nxb", select: "name" })
+        .populate({ path: "category", select: "name" }).exec();;
     res.status(200).json({ book });
 }
 
@@ -39,7 +40,7 @@ exports.deleteBook = async (req, res) => {
         Book.deleteOne({ _id: _id }).exec((error, result) => {
             if (error) return res.status(400).json({ error });
             if (result) {
-                res.status(201).json({ result });
+                res.status(201).json({ message: 'delete successful' });
             }
         });
     } else {

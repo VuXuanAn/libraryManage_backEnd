@@ -13,6 +13,7 @@ const initDataRoutes = require("./routes/admin/initData")
 const bookRoutes = require("./routes/book")
 const ticketBorrowedRoutes = require("./routes/ticketBorrows")
 const categoryRoutes = require("./routes/category")
+const blogRoutes = require("./routes/blog")
 env.config();
 // mongodb+srv://Vuxuanan:<password>@cluster0.jjn8u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 mongoose
@@ -31,7 +32,7 @@ mongoose
 
 app.use(cors());
 app.use(express.json());
-app.use("/public", express.static(path.join(__dirname, "uploads")));
+app.use("/public", express.static(path.join(__dirname, "upload")));
 
 app.use("/api", authRoutes);
 app.use("/api", nxbRoutes);
@@ -40,6 +41,7 @@ app.use("/api", initDataRoutes);
 app.use("/api", bookRoutes)
 app.use("/api", ticketBorrowedRoutes)
 app.use("/api", categoryRoutes)
+app.use("/api", blogRoutes)
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
 });
