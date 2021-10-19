@@ -33,6 +33,22 @@ exports.getAllBook = async (req, res) => {
     res.status(200).json({ book });
 }
 
+exports.getProductDetailsById = (req, res) => {
+    const { bookId } = req.params;
+    if (bookId) {
+        Book.findOne({ _id: bookId })
+            .select("_id name price nxb stock  borrowed descreption pictureBook")
+            .exec((error, book) => {
+                if (error) return res.status(400).json({ error });
+                if (book) {
+                    res.status(200).json({ book });
+                }
+            });
+    } else {
+        return res.status(400).json({ error: "Params required" });
+    }
+};
+
 
 exports.deleteBook = async (req, res) => {
     const { _id } = req.body;

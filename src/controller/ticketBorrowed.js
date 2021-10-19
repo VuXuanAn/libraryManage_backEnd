@@ -25,7 +25,7 @@ exports.addTickets = (req, res) => {
 }
 
 exports.getAllTicket = async (req, res) => {
-    const tickets = await Ticket.find({}).exec();
+    const tickets = await Ticket.find({}).populate({ path: "idUser", select: "lastName firstName" }).populate({ path: "idBook", select: "name" }).exec();
     res.status(200).json({
         tickets
     });

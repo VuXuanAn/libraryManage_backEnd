@@ -1,6 +1,6 @@
 const express = require("express");
 const { requireSignin, adminMiddleware } = require("../common-middleware");
-const { addNewBook, getAllBook, deleteBook } = require("../controller/book");
+const { addNewBook, getAllBook, deleteBook, getProductDetailsById } = require("../controller/book");
 
 const shortid = require("shortid");
 const path = require("path");
@@ -21,7 +21,10 @@ const upload = multer({ storage });
 const router = express.Router();
 
 router.post("/book/create", requireSignin, adminMiddleware, upload.single("pictureBook"), addNewBook);
-router.post("/book/getAllBook", requireSignin, adminMiddleware, getAllBook);
+router.post("/book/getAllBook", getAllBook);
+
+router.get("/book/:bookId", getProductDetailsById);
+
 router.post("/book/deleteBook", requireSignin, adminMiddleware, deleteBook);
 
 

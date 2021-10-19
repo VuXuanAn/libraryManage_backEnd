@@ -14,6 +14,9 @@ const bookRoutes = require("./routes/book")
 const ticketBorrowedRoutes = require("./routes/ticketBorrows")
 const categoryRoutes = require("./routes/category")
 const blogRoutes = require("./routes/blog")
+
+// route for medical
+const profile = require("./routes/medical/profile")
 env.config();
 // mongodb+srv://Vuxuanan:<password>@cluster0.jjn8u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 mongoose
@@ -42,6 +45,7 @@ app.use("/api", bookRoutes)
 app.use("/api", ticketBorrowedRoutes)
 app.use("/api", categoryRoutes)
 app.use("/api", blogRoutes)
+app.use("/api", profile)
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
 });
